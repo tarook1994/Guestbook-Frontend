@@ -3,6 +3,7 @@ import Grid from "@material-ui/core/Grid";
 import OutlinedInput from "./outlined-input";
 import Button from "@material-ui/core/Button";
 import Alert from "@material-ui/lab/Alert";
+import { useHistory } from "react-router-dom";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import axios from "axios";
 
@@ -14,6 +15,7 @@ const Register = props => {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  let history = useHistory();
 
   const handleEmailChange = event => {
     setEmail(event.target.value);
@@ -43,10 +45,13 @@ const Register = props => {
               confirmPassword
             }
           );
-          console.log(registerResult);
-          setIsError(false);
           setIsLoading(false);
-
+          if (registerResult.data.user) {
+            const loginCookie = registerResult.data.token;
+            localStorage.setItem("loginCookie", loginCookie);
+            return history.push("/guestbook");
+          }
+          setIsError(false);
         }
       }
     } catch (err) {
