@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Grid from "@material-ui/core/Grid";
+import { makeStyles } from "@material-ui/core/styles";
 import OutlinedInput from "./outlined-input";
 import Button from "@material-ui/core/Button";
 import Alert from "@material-ui/lab/Alert";
@@ -7,12 +8,19 @@ import { useHistory } from "react-router-dom";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import axios from "axios";
 
+const useStyles = makeStyles(theme => ({
+  background: {
+    backgroundColor: "#1084ba"
+  }
+}));
+
 const Login = props => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const classes = useStyles();
   let history = useHistory();
 
   const handleEmailChange = event => {
@@ -51,27 +59,30 @@ const Login = props => {
   };
 
   return (
-    <Grid>
-      {isError ? <Alert severity="error">{errorMessage}</Alert> : null}
+    <Grid container justify="center" classes={{ root: classes.background }}>
+      <Grid>
+        {isError ? <Alert severity="error">{errorMessage}</Alert> : null}
+          <OutlinedInput
+            label="Email"
+            onChange={handleEmailChange}
+            type="text"
+          />
+          <OutlinedInput
+            label="Password"
+            type="password"
+            onChange={handlePasswordChange}
+          />
 
-      <OutlinedInput
-        fieldName="Email"
-        handleChange={handleEmailChange}
-        type="text"
-      />
-      <OutlinedInput
-        fieldName="Password"
-        handleChange={handlePasswordChange}
-        type="password"
-      />
-      <Button
-        variant="outlined"
-        color="primary"
-        onClick={handleSignIn}
-        disabled={isLoading}
-      >
-        {isLoading ? <CircularProgress> </CircularProgress> : "Sign in"}
-      </Button>
+        <Button
+          variant="outlined"
+          color="primary"
+          size="large"
+          onClick={handleSignIn}
+          disabled={isLoading}
+        >
+          {isLoading ? <CircularProgress> </CircularProgress> : "Sign in"}
+        </Button>
+      </Grid>
     </Grid>
   );
 };

@@ -27,11 +27,9 @@ class Container extends React.PureComponent {
     return (
       <>
         <AppBar />
-        <Grid container justify="center" classes={{ root: classes.background }}>
           <Route path="/login" exact render={() => <Login  />} />
           <Route path="/register" exact render={() => <Register />} />
           <Route path="/guestbook" exact render={() => <GuestBook />} />
-        </Grid>
       </>
     );
   }

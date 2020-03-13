@@ -6,23 +6,22 @@ const useStyles = makeStyles(theme => ({
   root: {
     "& > *": {
       margin: theme.spacing(1),
-      width: 200
+      width: 400
     }
   }
 }));
 
 export default function OutlinedInput(props) {
   const classes = useStyles();
-  const { fieldName, handleChange, type } = props;
   return (
-    <form className={classes.root} noValidate autoComplete="off">
+    <div className={classes.root}>
       <TextField
+        required
+        onSubmit={null}
         id="outlined-basic"
-        label={fieldName}
-        variant="outlined"
-        onChange={handleChange}
-        type={type}
+        variant="outlined"  
+        {...props}
       />
-    </form>
+    </div>
   );
 }

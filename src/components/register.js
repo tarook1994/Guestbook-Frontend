@@ -67,19 +67,24 @@ const Register = props => {
     <>
       <Grid>
         {isError ? <Alert severity="error">{errorMessage}</Alert> : null}
-        <OutlinedInput fieldName="Name" handleChange={handleNameChange} />
-        <OutlinedInput fieldName="Email" handleChange={handleEmailChange} />
+        <OutlinedInput label="Name" onChange={handleNameChange} />
+        <OutlinedInput label="Email" onChange={handleEmailChange} />
         <OutlinedInput
-          fieldName="Password"
-          handleChange={handlePasswordChange}
+          label="Password"
+          onChange={handlePasswordChange}
           type="password"
         />
         <OutlinedInput
-          fieldName="Confirm Password"
-          handleChange={handleConfirmPasswordChange}
+          label="Confirm Password"
+          onChange={handleConfirmPasswordChange}
           type="password"
         />
-        <Button variant="outlined" color="primary" onClick={handleRegister}>
+        <Button
+          variant="outlined"
+          color="primary"
+          onClick={handleRegister}
+          size="large"
+        >
           {isLoading ? <CircularProgress> </CircularProgress> : "Register"}
         </Button>
       </Grid>
