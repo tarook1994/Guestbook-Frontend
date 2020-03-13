@@ -4,6 +4,7 @@ import { withStyles } from "@material-ui/styles";
 import Grid from "@material-ui/core/Grid";
 import AppBar from "../components/app-bar";
 import Login from "../components/login";
+import Register from "../components/register";
 
 const styles = theme => ({
   background: {
@@ -27,6 +28,7 @@ class Container extends React.PureComponent {
         <AppBar />
         <Grid container justify="center" classes={{root: classes.background}}>
           <Route path="/login" exact render={() => <Login />} />
+          <Route path="/register" exact render={() => <Register />} />
         </Grid>
       </>
     );

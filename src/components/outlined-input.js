@@ -13,10 +13,16 @@ const useStyles = makeStyles(theme => ({
 
 export default function OutlinedInput(props) {
   const classes = useStyles();
-    const {fieldName, handleChange} = props;
+  const { fieldName, handleChange, type } = props;
   return (
     <form className={classes.root} noValidate autoComplete="off">
-      <TextField id="outlined-basic" label={fieldName} variant="outlined" onChange={handleChange} />
+      <TextField
+        id="outlined-basic"
+        label={fieldName}
+        variant="outlined"
+        onChange={handleChange}
+        type={type}
+      />
     </form>
   );
 }
